@@ -1,9 +1,9 @@
 // 'use strict'
 
 const { spawn, exec } = require("child_process");
-const { fgGreen, fgRed, fgYellow, bgGreen, bgCyan } = require("./utils");
+const { fgGreen, fgRed, fgYellow, printableText, bgCyan } = require("./utils");
 
-console.log(bgCyan, "Initiating pre-commit hook");
+console.log(bgCyan, printableText.INITIATE_PRE_COMMIT_HOOK);
 
 const isMasterBranch = spawn("git symbolic-ref --short HEAD", [], {
   shell: true,
@@ -20,37 +20,52 @@ isMasterBranch.stdout.on("data", (data) => {
   if (data.toString() === "master" || data.toString() === "main") {
     console.log(
       fgRed,
-      "Cannot commit to main branch. Consider switching to a different branch \u274c"
+      printableText.COMMIT_TO_MAIN_BRANCH + printableText.WRONG_TICK
     );
   } else if (data.toString().length == 0) {
     console.log(
       fgRed,
-      "Cannot commit to main branch. Consider switching to a different branch \u274c"
+      printableText.COMMIT_TO_MAIN_BRANCH + printableText.WRONG_TICK
     );
   } else {
-    console.log(fgGreen, "Committing to a non-main branch \u2713");
+    console.log(
+      fgGreen,
+      printableText.COMMIT_TO_NON_MAIN_BRANCH + printableText.CORRECT_TICK
+    );
   }
 });
 
 isMasterBranch.on("error", (code) => {
-  console.log(fgRed, "Error while checking commit branch \u274c");
+  console.log(
+    fgRed,
+    printableText.COMMIT_BRANCH_ERROR + printableText.WRONG_TICK
+  );
   process.exit(code);
 });
 
 formatter.on("exit", (code, signal) => {
   if (code == 2) {
-    console.log(fgRed, "Something's wrong with Prettier \u274c");
+    console.log(
+      fgRed,
+      printableText.FORMATTER_CODE_2 + printableText.WRONG_TICK
+    );
     process.exit(code);
   } else if (code == 1) {
-    console.log(fgYellow, "Something wasn't formatted properly \u274c");
+    console.log(
+      fgYellow,
+      printableText.FORMATTER_CODE_1 + printableText.WRONG_TICK
+    );
     process.exit(code);
   } else if (code == 0) {
-    console.log(fgGreen, "Changes formatted properly \u2713");
+    console.log(
+      fgGreen,
+      printableText.FORMATTER_CODE_0 + printableText.CORRECT_TICK
+    );
     exec("git add .", (error, stdout, stderr) => {
       if (error) {
         process.exit(1);
       } else {
-        console.log(bgGreen, "Staging formatted changes...");
+        console.log(bgCyan, printableText.STAGING_FORMATTED_CHANGES);
         console.log(stdout);
       }
     });
@@ -58,7 +73,7 @@ formatter.on("exit", (code, signal) => {
 });
 
 formatter.on("error", (code) => {
-  console.log(fgRed, "Error while running prettier \u274c");
+  console.log(fgRed, printableText.FORMATTER_ERROR + printableText.WRONG_TICK);
   process.exit(code);
 });
 

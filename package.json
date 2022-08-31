@@ -4,7 +4,9 @@
   "description": "RDBMS modeler using Web Components in vanilla JS",
   "main": "./src/main.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "chmod -R ug+x ./.git/hooks/ && echo \"\\033[46mMarked hooks as executable\\033[0m\"",
+    "prettier:check": "prettier --check ."
   },
   "engines": {
     "node": "16.14.2",
@@ -21,6 +23,7 @@
   },
   "homepage": "https://github.com/Vigneshwaran16/database-modeler#readme",
   "devDependencies": {
+    "prettier": "^2.7.1",
     "typescript": "^4.8.2"
   }
 }

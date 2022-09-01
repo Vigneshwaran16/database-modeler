@@ -85,6 +85,10 @@ const printableText = Object.freeze({
   EMPTY_COMMIT_MESSAGE: "Commit message cannot be empty ",
 });
 
+const consoler = (colorCode, coloredText, additionalText) => {
+  console.log(colorCode, `[${coloredText}]`, additionalText);
+};
+
 module.exports = {
   fgGreen,
   fgRed,
@@ -97,4 +101,5 @@ module.exports = {
   minimumCommitMsgLength,
   gitmoji,
   printableText,
+  consoler,
 };

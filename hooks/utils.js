@@ -52,6 +52,7 @@ const gitmoji = Object.freeze({
   ":wheelchair:": "Accessibility",
   ":truck:": "Move/rename repository",
   ":technologist:": "Improve developer experience",
+  ":recycle:": "Refactor code",
 });
 const printableText = Object.freeze({
   //Unicode characters

@@ -5,7 +5,6 @@
   "main": "./src/main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "chmod -R ug+x ./.git/hooks/ && echo \"\\033[46mMarked hooks as executable\\033[0m\"",
     "prettier:check": "prettier --check ."
   },
   "engines": {

@@ -9,13 +9,13 @@ RDBMS modeler using Web Components with vanilla JS
 - **Framework independent**.
 
 ## Roadmap and Proposals
-[] Native State management
-[] Exporting the model as PNG, .sql
-[] Exporting as JSON 
-[] Render the model from exported JSON
-[] Query Editor support??
-[] Syntax checker??
-[] Rendering from a database dump 
+- [ ] Native State management
+- [ ] Exporting the model as PNG, .sql
+- [ ] Exporting as JSON 
+- [ ] Render the model from exported JSON
+- [ ] Query Editor support??
+- [ ] Syntax checker??
+- [ ] Rendering from a database dump 
 
 ## Contribution Guidelines
 

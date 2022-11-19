@@ -20,7 +20,3 @@ RDBMS modeler using Web Components with vanilla JS
 ## Contribution Guidelines
 
 *Will be updated in the near future*
-
-## Philosophy
-
-- **WYSIWYG**. No unwanted bundled/bloated code to load the app on client-side. Developers can see the actual code as how it was developed.

@@ -15,7 +15,6 @@ export class SidebarComponent extends HTMLElement {
     // life cycle functions
     connectedCallback() {
         this.shadowElement.innerHTML = sidebarView()
-        this.initializeButtons()
     }
 
     

@@ -1,4 +1,5 @@
 import canvasView from "./canvas.view.js";
+import canvasStyles from './canvas.styles.css' assert {type: 'css'}
 
 export class CanvasComponent extends HTMLElement {
     constructor() {
@@ -17,6 +18,7 @@ export class CanvasComponent extends HTMLElement {
     
     render() {
         this.shadowElement.innerHTML = canvasView()
+        this.shadowRoot.adoptedStyleSheets = [canvasStyles]
     }
 
     initializeButtons( ) {

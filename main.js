@@ -12,10 +12,10 @@ import { ModelerComponent } from "./src/Modeler/modeler.component.js";
 */
 const components = [ 
     ButtonComponent,
+    ModelerComponent,
     MenuItemComponent,
     SidebarMenuComponent,
     SidebarComponent,
-    ModelerComponent,
     CanvasComponent,
 ] 
 

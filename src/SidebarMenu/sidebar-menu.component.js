@@ -1,5 +1,5 @@
 import sidebarMenuView from "./sidebar-menu.view.js"
-
+import sidebarMenuStyles from "./sidebar-menu.styles.css" assert { type: 'css' }
 
 export class SidebarMenuComponent extends HTMLElement {
     static get selector() {
@@ -19,6 +19,7 @@ export class SidebarMenuComponent extends HTMLElement {
     render() {
         const sidebarMenu = sidebarMenuView()
         this.shadowElement.innerHTML = sidebarMenu
+        this.shadowRoot.adoptedStyleSheets = [sidebarMenuStyles]
     }
 
     initializeMenuItems() {

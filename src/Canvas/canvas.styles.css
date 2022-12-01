@@ -13,6 +13,6 @@
 modeler-canvas {
     display: flex;
     height: 90%;
-    border: 2px dotted black;
+    width: 100%;
 }
 

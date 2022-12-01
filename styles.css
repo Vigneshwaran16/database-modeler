@@ -23,6 +23,7 @@ sidebar-component {
 canvas-component {
     border: 1px dotted red;
     width: 100%;
+    overflow: hidden;
 }
 
 modeler-canvas {

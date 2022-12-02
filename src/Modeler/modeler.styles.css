@@ -1,0 +1,18 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+#pannable-root {
+    width: 100%;
+    overflow: auto;
+    
+}
+
+#pannable { 
+    background: linear-gradient(90deg, #161122 21px, transparent 1%) center, linear-gradient(#161122 21px, transparent 1%) center, #a799cc;
+    background-size: 22px 22px; 
+    width: 2000px;
+    height: 1000px;
+}

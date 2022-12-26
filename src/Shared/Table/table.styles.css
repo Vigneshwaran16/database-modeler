@@ -1,0 +1,23 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    width: 200px;
+    color: white;
+    border-spacing: 0;
+    border: 2px solid white;
+    border-collapse: collapse;
+}
+
+
+tr {
+    height: 20px;
+    border: 2px solid white;
+}
+
+tr:last-child {
+    border-bottom: none;
+}

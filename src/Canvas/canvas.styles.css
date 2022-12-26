@@ -1,18 +1,32 @@
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-#button-container {
-    height: 10%;
-    display: flex;
-    align-items: center;
-    justify-content: right;
-}
-
-
-modeler-canvas {
-    display: flex;
-    height: 90%;
+.pannable-root {
     width: 100%;
+    overflow: hidden;
 }
 
+.pannable-root.active {
+    /* background: rgba(255,255,255,0.3); */
+    cursor: grabbing;
+    cursor: -webkit-grabbing;
+    transform: scale(1);
+  }
+
+#pannable { 
+    background: linear-gradient(90deg, #161122 21px, transparent 1%) center, linear-gradient(#161122 21px, transparent 1%) center, #a799cc;
+    background-size: 22px 22px; 
+    width: 2000px;
+    height: 1000px;
+    overflow: hidden;
+}
+
+table-component{
+    /* top: 10px; */
+    /* left: 10px; */
+    /* position: relative; */
+    z-index: 50;
+}

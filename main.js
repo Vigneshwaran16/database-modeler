@@ -1,9 +1,9 @@
 import { SidebarComponent } from "./src/Sidebar/sidebar.component.js";
 import { CanvasComponent } from "./src/Canvas/canvas.component.js";
 import { ButtonComponent } from "./src/Shared/Button/button.component.js";
-import { SidebarMenuComponent } from "./src/SidebarMenu/sidebar-menu.component.js";
-import { MenuItemComponent } from "./src/SidebarMenu/MenuItem/menu-item.component.js";
-import { ModelerComponent } from "./src/Modeler/modeler.component.js";
+
+import { TableComponent } from "./src/Shared/Table/table.component.js";
+import { SidebarMenuComponent } from "./src/Sidebar/SidebarMenuItem/sidebar-menu-item.component.js";
 
 
 /*
@@ -12,8 +12,7 @@ import { ModelerComponent } from "./src/Modeler/modeler.component.js";
 */
 const components = [ 
     ButtonComponent,
-    ModelerComponent,
-    MenuItemComponent,
+    TableComponent,
     SidebarMenuComponent,
     SidebarComponent,
     CanvasComponent,

@@ -20,12 +20,9 @@ sidebar-component {
     border: 1px dotted dodgerblue;
 }
 
-canvas-component {
+modeler-canvas {
     border: 1px dotted red;
     width: 100%;
+    display: flex;
     overflow: hidden;
-}
-
-modeler-canvas {
-    border: 1px dotted black
 }

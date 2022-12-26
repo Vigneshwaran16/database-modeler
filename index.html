@@ -2,11 +2,13 @@
     <head>
         <title>DATABASE MODELER</title>
         <link href="./styles.css" rel="stylesheet"/>
+        <!-- This needs to be added internally to the corresponding shadow elements (due to encapsulation of shadow DOM)-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
     </head>
     <body>
         <div class="root">
             <sidebar-component></sidebar-component>
-            <canvas-component></canvas-component>
+            <modeler-canvas></modeler-canvas>
         </div>
 
         <!-- Init script -->

@@ -1,11 +1,10 @@
 
 export default (() => {
     return `
-        <div id="button-container">
-            <button-component class="btn" id="btn-table"></button-component>
-            <button-component class="btn" id="btn-schema"></button-component>
+    <link rel="stylesheet" href="./src/Canvas/canvas.styles.css" />
+    <div class="pannable-root">
+        <div id="pannable" class="pan">
         </div>
-        <modeler-canvas id='mod'></modeler-canvas>
-        
+    </div>     
     `
 })

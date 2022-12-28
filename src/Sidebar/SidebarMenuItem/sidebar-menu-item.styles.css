@@ -4,10 +4,34 @@
     padding: 0;
 }
 
-div {
+#dropdown-menu {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     padding: 5px 10px;
     border-bottom: 0.5px solid grey;
+}
+
+#dropdown-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#dropdown-list {
+    background-color: rgb(189, 184, 184);
+    display: none;
+}
+
+#dropdown-list[is-active="true"] {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 20px;
+}
+
+#dropdown-list[is-empty="true"]  {
+    padding: 15px 0px;
+}
+
+i[is-active="true"] {
+    transform: rotate(90deg);
 }

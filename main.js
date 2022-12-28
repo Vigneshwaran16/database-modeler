@@ -11,11 +11,11 @@ import { SidebarMenuComponent } from "./src/Sidebar/SidebarMenuItem/sidebar-menu
   can be accessed from parent components
 */
 const components = [ 
-    ButtonComponent,
-    TableComponent,
-    SidebarMenuComponent,
-    SidebarComponent,
-    CanvasComponent,
+  TableComponent,
+  SidebarMenuComponent,
+  SidebarComponent,
+  CanvasComponent,
+  ButtonComponent,
 ] 
 
 components.forEach( (component) => {

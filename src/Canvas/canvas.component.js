@@ -12,42 +12,45 @@ export class CanvasComponent extends HTMLElement {
         super()
         this.shadowElement = this.attachShadow({ mode: 'open' })
         
-        // do not use variable names with html element's properties like scrollLeft, scrollTo to avoid collision 
+        // do not use variable names with html element's properties like scrollLeft, scrollTo to avoid collision
+        // detect mousedown event
         this.isDown = false;
+
+        // holds initial click postion to scroll from
         this.startX;
         this.startY;
-        // hosrizontal scroll
-        this.leftScroll; 
+
+        // horizontal scroll
+        this.leftScroll;
+
         // vertical scroll
         this.topScroll
+
+        // current count of tables in canvas
+        this.tables = [];
     }
     
     connectedCallback() {
         const canvas = canvasView()
-        this.shadowElement.innerHTML = canvas
-        this.shadowElement.querySelector('.pannable-root').scrollLeft = constants.SCROLLABLE_CANVAS_WIDTH/2    
-        this.attachEventListeners()
+        this.shadowElement.innerHTML = canvas   
         this.positionScrollbar()
+        this.attachEventListeners()
     }
 
-    attachEventListeners() {
-
-        
-        this.shadowRoot.addEventListener('click', (ev) => {
-            
-        })
+    attachEventListeners = () => {
         
         this.shadowRoot.addEventListener('addTable', (ev) => {
             ev.preventDefault()
-            const canvasEl = this.shadowRoot.querySelector('.pannable-root')
-            const pannableRootWidth = document.querySelector('modeler-canvas').clientWidth
-            const currentScrollLeft = canvasEl.scrollLeft
-            let viewableWidthStart = currentScrollLeft
-            let viewableWidthEnd = currentScrollLeft + pannableRootWidth
-            this.shadowRoot.getElementById('pannable').appendChild(new TableComponent())
-            const table = this.shadowRoot.querySelector('table-component')
-            table.setAttribute('left', Math.floor(Math.random() * (viewableWidthEnd - viewableWidthStart + 1)) + viewableWidthStart)
-            table.setAttribute('top',0)
+
+            const { initialStartX, initialStartY } = this.getDynamicInitialTablePosition()
+
+            const table = new TableComponent()
+            const tableId = `table-${this.tables.length+1}`
+            table.setAttribute('id', tableId)
+            this.shadowRoot.getElementById('pannable').appendChild(table)
+            table.setAttribute('left', initialStartX)
+            table.setAttribute('top',initialStartY)
+            this.tables.push(tableId)
         })
         this.scrollable = this.shadowRoot.querySelector('.pannable-root')
 
@@ -103,14 +106,33 @@ export class CanvasComponent extends HTMLElement {
 
     }
 
-    positionScrollbar() {
+    positionScrollbar = () => {
         const scrollBar = this.shadowRoot.querySelector('.pannable-root')
         addEventListener('load', (e) => {
             scrollBar.scrollLeft = constants.SCROLLABLE_CANVAS_WIDTH/3
             scrollBar.scrollTop = constants.SCROLLABLE_CANVAS_HEIGHT/5
         })
-        
-
     }
 
+    getDynamicInitialTablePosition = () => {
+        const canvasEl = this.shadowRoot.querySelector('.pannable-root')
+        const canvasShadowEl = document.querySelector('modeler-canvas')
+        // get the current visible part of the scrollable canvas
+        // Horizontal
+        const pannableRootWidth = canvasShadowEl.clientWidth
+        const currentScrollLeft = canvasEl.scrollLeft
+        const viewableWidthStart = currentScrollLeft
+        const viewableWidthEnd = currentScrollLeft + pannableRootWidth
+
+        // Vertical
+        const pannableRootHeight = canvasShadowEl.clientHeight
+        const currentScrollTop = canvasEl.scrollTop
+        const viewableHeightStart = currentScrollTop
+        const viewableHeightEnd = currentScrollTop + pannableRootHeight
+
+        const initialStartX = Math.floor(Math.random() * (viewableWidthEnd - viewableWidthStart + 1)) + viewableWidthStart;
+        const initialStartY = Math.floor(Math.random() * (viewableHeightEnd - viewableHeightStart + 1)) + viewableHeightStart;
+
+        return { initialStartX, initialStartY };
+    }
 }

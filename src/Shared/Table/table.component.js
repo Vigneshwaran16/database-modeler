@@ -7,7 +7,7 @@ export class TableComponent extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['top','left']
+        return ['top', 'left']
     }
 
     constructor() {
@@ -27,7 +27,7 @@ export class TableComponent extends HTMLElement {
 
             case 'left':
                 this.style.left = newValue
-            break
+            break;
         }
     }
 

@@ -7,6 +7,8 @@
 body {
     margin: 0;
     padding: 30px;
+    background-color: #e5e1e1;
+    /* background-color: #24262d; */
 }
 
 .root {
@@ -15,16 +17,3 @@ body {
     height: 100%;
 }
  
-sidebar-component {
-    width: 30%;
-    border: 1px dotted dodgerblue;
-    display: flex;
-    flex-direction: column;
-}
-
-modeler-canvas {
-    border: 1px dotted red;
-    width: 100%;
-    display: flex;
-    overflow: hidden;
-}

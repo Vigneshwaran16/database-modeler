@@ -12,9 +12,10 @@
     border-bottom: 0.5px solid grey;
 }
 
-#dropdown-container {
+:host {
     display: flex;
     flex-direction: column;
+    color: black;
 }
 
 #dropdown-list {

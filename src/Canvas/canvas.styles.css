@@ -4,6 +4,14 @@
     padding: 0;
 }
 
+:host {
+    border: 0.01em ridge #6c6e70;
+    border-radius: 6px;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+}
+
 .pannable-root {
     width: 100%;
     overflow: hidden;
@@ -17,23 +25,10 @@
   }
 
 #pannable { 
-    background: linear-gradient(90deg, #161122 21px, transparent 1%) center, linear-gradient(#161122 21px, transparent 1%) center, #a799cc;
+    background: linear-gradient(90deg, #1c1e23 21px, transparent 1%) center, linear-gradient(#1c1e23 21px, transparent 1%) center, #706a7e;
     background-size: 22px 22px; 
     width: 2000px;
     height: 1000px;
     overflow: hidden;
 }
 
-/* table-component {
-    top: 10px;
-    left: 10px;
-    width: 200px;
-    position: relative; 
-    display: block;
-} */
-/* table-component{
-    top: 10px;
-    left: 10px;
-    position: relative; 
-    z-index: 50;
-} */

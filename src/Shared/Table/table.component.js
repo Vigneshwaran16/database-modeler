@@ -6,6 +6,10 @@ export class TableComponent extends HTMLElement {
         return 'table-component'
     }
 
+    static get observedAttributes() {
+        return ['top','left']
+    }
+
     constructor() {
         super()
         this.shadowElement = this.attachShadow({ mode: 'open' })
@@ -15,13 +19,27 @@ export class TableComponent extends HTMLElement {
         this.render()
     }
 
+    attributeChangedCallback(attribute, oldValue, newValue) {
+        switch(attribute) {
+            case 'top':
+                this.style.top = newValue
+            break;
+
+            case 'left':
+                this.style.left = newValue
+            break
+        }
+    }
+
     render() {
         this.shadowElement.innerHTML = tableView()
         this.shadowRoot.addEventListener('click', (ev) => {
             ev.stopImmediatePropagation()
             ev.preventDefault()
-            console.log('event',ev.currentTarget)
-            console.log('this style', ev.currentTarget)
         }, false)
+
+        this.shadowRoot.addEventListener('mousedown', (ev) => {
+            console.log('mousedown', ev.target)
+        })
     }
 }

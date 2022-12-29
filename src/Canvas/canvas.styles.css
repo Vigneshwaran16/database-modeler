@@ -24,9 +24,16 @@
     overflow: hidden;
 }
 
-table-component{
-    /* top: 10px; */
-    /* left: 10px; */
-    /* position: relative; */
+/* table-component {
+    top: 10px;
+    left: 10px;
+    width: 200px;
+    position: relative; 
+    display: block;
+} */
+/* table-component{
+    top: 10px;
+    left: 10px;
+    position: relative; 
     z-index: 50;
-}
+} */

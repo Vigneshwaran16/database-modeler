@@ -1,7 +1,7 @@
 
 export default (() => {
     return `
-        <button type="button" id="btn-component" value="">
-        </button>
+        <link rel="stylesheet" href="./src/Shared/Button/button.styles.css" />
+        <button type="button" id="btn"></button>
     `
 })

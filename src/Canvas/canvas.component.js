@@ -1,7 +1,10 @@
 import canvasView from "./canvas.view.js"
 import { TableComponent } from "../Shared/Table/table.component.js"
+import canvasStyles from './canvas.styles.css' assert {type: 'css'}
 
 const SCROLL_SENSITIVITY = 0.8
+const SCROLLABLE_CANVAS_WIDTH = 2000
+const SCROLLABLE_CANVAS_HEIGHT = 1000
 export class CanvasComponent extends HTMLElement {
     static get selector() {
         return 'modeler-canvas'
@@ -23,7 +26,7 @@ export class CanvasComponent extends HTMLElement {
     
     connectedCallback() {
         const canvas = canvasView()
-        this.shadowElement.innerHTML = canvas
+        this.shadowElement.innerHTML = canvas        
         this.attachEventListeners()
     }
 
@@ -33,11 +36,32 @@ export class CanvasComponent extends HTMLElement {
         })
 
         this.shadowRoot.addEventListener('addTable', (ev) => {
-            this.shadowRoot.getElementById('pannable').appendChild(new TableComponent())
             ev.preventDefault()
+            const canvasEl = this.shadowRoot.querySelector('.pannable-root')
+            const pannableRootWidth = document.querySelector('modeler-canvas').clientWidth
+            const currentScrollLeft = canvasEl.scrollLeft
+            let viewableWidthStart = currentScrollLeft
+            let viewableWidthEnd = currentScrollLeft + pannableRootWidth
+            this.shadowRoot.getElementById('pannable').appendChild(new TableComponent())
+            const table = this.shadowRoot.querySelector('table-component')
+            table.setAttribute('left', Math.floor(Math.random() * (viewableWidthEnd - viewableWidthStart + 1)) + viewableWidthStart)
+            table.setAttribute('top',0)
+            // const table = this.shadowRoot.querySelector('table-component')
+            // let tableStyles = `top: 100px; left: 300px;`
+            // table.setAttribute('style', tableStyles)
+            // console.log('table', table)
+            // update the index if `table-component` style is changed and vice-versa 
+            // console.log('tab', this.shadowRoot.styleSheets[0])
+            // this.shadowRoot.styleSheets[0].deleteRule(4)
+            // this.shadowRoot.styleSheets[0].insertRule("table-component { top: 50px; left: 100px; position: 'relative';}", 4)
+            // // tab.right = '50px'
+            // tab.position = 'relative'
+            // tab.setAttribute('style', 'position: "relative"; top: 50; left: 100;')
+            // tab.left = '50px'
+            // console.log('upd', this.shadowRoot.styleSheets[0])
         })
-
         this.scrollable = this.shadowRoot.querySelector('.pannable-root')
+
         this.scrollable.addEventListener('mousedown', (e) => {
 
             // this prevents if the event is a click-event on tables

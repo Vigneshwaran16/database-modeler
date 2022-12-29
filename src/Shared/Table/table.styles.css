@@ -21,3 +21,9 @@ tr {
 tr:last-child {
     border-bottom: none;
 }
+
+:host {
+    min-width: 200px;
+    position: relative; 
+    display: block;
+}

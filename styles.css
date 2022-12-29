@@ -18,6 +18,8 @@ body {
 sidebar-component {
     width: 30%;
     border: 1px dotted dodgerblue;
+    display: flex;
+    flex-direction: column;
 }
 
 modeler-canvas {

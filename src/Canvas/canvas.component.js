@@ -1,10 +1,8 @@
 import canvasView from "./canvas.view.js"
 import { TableComponent } from "../Shared/Table/table.component.js"
 import canvasStyles from './canvas.styles.css' assert {type: 'css'}
+import { constants } from "../utils.js"
 
-const SCROLL_SENSITIVITY = 0.8
-const SCROLLABLE_CANVAS_WIDTH = 2000
-const SCROLLABLE_CANVAS_HEIGHT = 1000
 export class CanvasComponent extends HTMLElement {
     static get selector() {
         return 'modeler-canvas'
@@ -26,15 +24,19 @@ export class CanvasComponent extends HTMLElement {
     
     connectedCallback() {
         const canvas = canvasView()
-        this.shadowElement.innerHTML = canvas        
+        this.shadowElement.innerHTML = canvas
+        this.shadowElement.querySelector('.pannable-root').scrollLeft = constants.SCROLLABLE_CANVAS_WIDTH/2    
         this.attachEventListeners()
+        this.positionScrollbar()
     }
 
     attachEventListeners() {
+
+        
         this.shadowRoot.addEventListener('click', (ev) => {
             
         })
-
+        
         this.shadowRoot.addEventListener('addTable', (ev) => {
             ev.preventDefault()
             const canvasEl = this.shadowRoot.querySelector('.pannable-root')
@@ -46,19 +48,6 @@ export class CanvasComponent extends HTMLElement {
             const table = this.shadowRoot.querySelector('table-component')
             table.setAttribute('left', Math.floor(Math.random() * (viewableWidthEnd - viewableWidthStart + 1)) + viewableWidthStart)
             table.setAttribute('top',0)
-            // const table = this.shadowRoot.querySelector('table-component')
-            // let tableStyles = `top: 100px; left: 300px;`
-            // table.setAttribute('style', tableStyles)
-            // console.log('table', table)
-            // update the index if `table-component` style is changed and vice-versa 
-            // console.log('tab', this.shadowRoot.styleSheets[0])
-            // this.shadowRoot.styleSheets[0].deleteRule(4)
-            // this.shadowRoot.styleSheets[0].insertRule("table-component { top: 50px; left: 100px; position: 'relative';}", 4)
-            // // tab.right = '50px'
-            // tab.position = 'relative'
-            // tab.setAttribute('style', 'position: "relative"; top: 50; left: 100;')
-            // tab.left = '50px'
-            // console.log('upd', this.shadowRoot.styleSheets[0])
         })
         this.scrollable = this.shadowRoot.querySelector('.pannable-root')
 
@@ -101,17 +90,26 @@ export class CanvasComponent extends HTMLElement {
 
             // horizontal scrolling
             const moveX = e.offsetX - this.startX
-            const pageScrollX = moveX * SCROLL_SENSITIVITY
+            const pageScrollX = moveX * constants.SCROLL_SENSITIVITY
 
             // vertical scrolling
             const moveY = e.offsetY - this.startY
-            const pageScrollY = moveY * SCROLL_SENSITIVITY
+            const pageScrollY = moveY * constants.SCROLL_SENSITIVITY
 
             // scroll event
             this.scrollable.scrollLeft = this.leftScroll - pageScrollX
             this.scrollable.scrollTop = this.topScroll - pageScrollY
-
         });
+
+    }
+
+    positionScrollbar() {
+        const scrollBar = this.shadowRoot.querySelector('.pannable-root')
+        addEventListener('load', (e) => {
+            scrollBar.scrollLeft = constants.SCROLLABLE_CANVAS_WIDTH/3
+            scrollBar.scrollTop = constants.SCROLLABLE_CANVAS_HEIGHT/5
+        })
+        
 
     }
 

@@ -44,12 +44,13 @@ export class CanvasComponent extends HTMLElement {
 
             const { initialStartX, initialStartY } = this.getDynamicInitialTablePosition()
 
-            const table = new TableComponent()
             const tableId = `table-${this.tables.length+1}`
+            const table = new TableComponent({tableName: tableId, tableColumns: []})
             table.setAttribute('id', tableId)
             this.shadowRoot.getElementById('pannable').appendChild(table)
             table.setAttribute('left', initialStartX)
             table.setAttribute('top',initialStartY)
+            table.setAttribute('table-properties', tableId)
             this.tables.push(tableId)
         })
         this.scrollable = this.shadowRoot.querySelector('.pannable-root')
@@ -103,6 +104,12 @@ export class CanvasComponent extends HTMLElement {
             this.scrollable.scrollLeft = this.leftScroll - pageScrollX
             this.scrollable.scrollTop = this.topScroll - pageScrollY
         });
+
+        // attach to element accessible in light DOM (instead of this.shadowRoot)
+        this.addEventListener('dragover', (ev) => {
+            ev.dataTransfer.dropEffect = 'move'
+            ev.preventDefault()
+        })
 
     }
 

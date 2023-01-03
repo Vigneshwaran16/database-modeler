@@ -8,14 +8,21 @@ table {
     width: 200px;
     color: white;
     border-spacing: 0;
-    border: 1px solid #5a5c82;
+    /* background-color: #2b2c3e; */
+    background-color: rgb(43 44 62 / 0.8) ;
+    /* border: 1px solid #5a5c82; */
     border-collapse: collapse;
+}
+
+:host(:hover) {
+    border: 1px solid #a5a9e2;
 }
 
 
 tr {
     height: 20px;
-    border: 1px solid #5a5c82;
+    border-bottom: 1px solid #475872;
+    /* border: 1px solid #5a5c82; */
 }
 
 tr:last-child {
@@ -23,6 +30,7 @@ tr:last-child {
 }
 
 :host {
+    border: 1px solid #475872;
     width: 200px;
     position: relative; 
     display: flex;

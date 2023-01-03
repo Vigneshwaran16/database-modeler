@@ -1,10 +1,10 @@
-export default (() => {
+export default ((tableName) => {
     return `
     <link rel="stylesheet" href="./src/Shared/Table/table.styles.css"/>
     <table id="table" class="tab">
     <tbody>
         <tr>
-            <th>Table Title</th>
+            <th>${tableName}</th>
         </tr>
         <tr> 
             <td></td>

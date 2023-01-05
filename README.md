@@ -8,13 +8,21 @@ RDBMS modeler using Web Components with vanilla JS
 - Client-side App
 - **Framework independent**.
 
+## MVP
+
+- [x] Drag to scroll canvas
+- [x] Add tables and update Schema
+- [ ] Keep track of references (indices, keys)
+- [ ] Drag to re-position tables
+- [ ] Make relation-links among tables
+- [ ] Maintain relation-links among tables when dragging
+- [ ] Reflect database details in the sidebar menu
 ## Roadmap and Proposals
-- [ ] Native State management
+- [ ] MVP status
 - [ ] Exporting the model as PNG, .sql
 - [ ] Exporting as JSON 
 - [ ] Render the model from exported JSON
 - [ ] Query Editor support??
-- [ ] Syntax checker??
 - [ ] Rendering from a database dump 
 
 ## Contribution Guidelines

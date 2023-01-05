@@ -7,16 +7,19 @@ export class TableComponent extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['top','left']
+        return ['top', 'left', 'table-properties']
     }
 
-    constructor() {
-        super()
+    constructor(options) {
+        super(options)
         this.shadowElement = this.attachShadow({ mode: 'open' })
+        this.tableName = options.tableName
+        this.tableColumns = options.tableColumns
     }
 
     connectedCallback() {
         this.render()
+        this.attachEventListeners()
     }
 
     attributeChangedCallback(attribute, oldValue, newValue) {
@@ -27,19 +30,34 @@ export class TableComponent extends HTMLElement {
 
             case 'left':
                 this.style.left = newValue
-            break
+            break;
+
+            case 'table-properties':
+                this.tableName = newValue
+            break;
         }
     }
 
     render() {
-        this.shadowElement.innerHTML = tableView()
-        this.shadowRoot.addEventListener('click', (ev) => {
-            ev.stopImmediatePropagation()
-            ev.preventDefault()
-        }, false)
+        this.shadowElement.innerHTML = tableView(this.tableName)
+        this.setAttribute('draggable','true')
+    }
 
-        this.shadowRoot.addEventListener('mousedown', (ev) => {
-            console.log('mousedown', ev.target)
+    attachEventListeners() {
+
+        this.addEventListener('dragstart', (ev) => {
+            this.dragStartX = ev.offsetX
+            this.dragStartY = ev.offsetY
+            ev.dataTransfer.effectAllowed = 'move'
+        })
+        
+        this.addEventListener('dragend', (ev) => {
+            const updatedOffsetX = this.dragStartX - ev.offsetX
+            const updatedOffsetY = this.dragStartY - ev.offsetY
+
+            //set attributes here for better accessibility
+            this.setAttribute('left', parseFloat(this.getAttribute('left')) - updatedOffsetX) 
+            this.setAttribute('top', parseFloat(this.getAttribute('top')) - updatedOffsetY) 
         })
     }
 }
